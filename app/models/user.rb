@@ -2,7 +2,9 @@ class User
   
   include Mongoid::Document
   
-  attr_accessible :email, :password, :password_confirmation, :first_name, :last_name, :username, :role
+  attr_accessor :login
+  
+  attr_accessible :email, :password, :password_confirmation, :first_name, :last_name, :username, :role, :login
   
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable, :rememberable
@@ -24,5 +26,12 @@ class User
   key :username
   
   ROLES = ['Admin', 'User']
+  
+  protected
+
+    def self.find_for_database_authentication(conditions)
+      login = conditions.delete(:login)
+      self.any_of({ :username => login }, { :email => login }).first
+    end
   
 end

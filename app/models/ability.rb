@@ -8,7 +8,7 @@ class Ability
     end
     
     if user.role == "User"
-      can [:edit, :update], User
+      can :update, User
       can [:create, :update, :read], Project
     end
     
