@@ -8,7 +8,7 @@ DeviseTest::Application.routes.draw do
     get '/logout' => 'devise/sessions#destroy'
   end
 
-  resources :users, :controller => "users", :only => [ :edit, :new, :destroy]
+  resources :users, :controller => "user", :only => :destroy
 
   resources :projects
 
