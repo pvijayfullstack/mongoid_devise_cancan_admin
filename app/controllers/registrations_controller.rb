@@ -33,12 +33,6 @@ class RegistrationsController < Devise::RegistrationsController
     end
   end
   
-  def destroy
-    resource.destroy
-    set_flash_message :notice, :destroyed if is_navigational_format?
-    redirect_to dashboard_index
-  end
-  
   protected
   
     def stored_location_for(resource)
