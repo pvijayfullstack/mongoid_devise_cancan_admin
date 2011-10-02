@@ -1,0 +1,1 @@
+A simple implementation of Devise, CanCan, and Mongoid with an admin interface.
