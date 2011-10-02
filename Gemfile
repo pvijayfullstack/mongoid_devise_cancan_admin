@@ -12,4 +12,5 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'autotest'
   gem 'webrat'
+  gem 'factory_girl_rails'
 end

@@ -1,5 +1,13 @@
+<% title "Home" %>
+
 <% flash.each do |key, message| %>
     <%= content_tag(:div, message, :class => "flash #{key}") %>
 <% end %>
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+
+<% if signed_in? %>
+<div>
+	<p>Welcome to taskoid, your personal task manager. Go ahead, create a new task!</p>
+<div>
+<% else %>
+	<%= render 'sign_in' %>
+<% end %>

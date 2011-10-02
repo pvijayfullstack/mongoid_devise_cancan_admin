@@ -1,19 +1,18 @@
-<h1>Listing users</h1>
+<% title "Users" %>
+
+<h1>Manage Users</h1>
 
 <table>
   <tr>
-    <th>First name</th>
-    <th>Last name</th>
-    <th>Username</th>
+    <th>Name</th>
     <th>User Email</th>
     <th></th>
+		<th></th>
   </tr>
 
 <% @users.each do |user| %>
   <tr>
-    <td><%= user.first_name %></td>
-    <td><%= user.last_name %></td>
-    <td><%= user.username %></td>
+    <td><%= user.name %></td>
 		<td><%= user.email %></td>
     <td><%= link_to 'Delete', user, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
@@ -22,4 +21,4 @@
 
 <br />
 
-<%= link_to 'New User', new_user_path %>
+<%= link_to 'New User', new_user_registration_path %>

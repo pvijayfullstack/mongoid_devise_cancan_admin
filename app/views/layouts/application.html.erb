@@ -1,37 +1,45 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>DeviseTest</title>
-  <%= stylesheet_link_tag :all %>
+  <title>Taskoid | <%= yield :title %></title>
   <%= javascript_include_tag :defaults, "nested_form" %>
   <%= csrf_meta_tag %>
-	<% if user_signed_in? %>
-		<li>
-			<%= link_to "Projects", projects_path %>
-		</li>
-		<li>
-		  <%= link_to('Edit Profile', edit_user_registration_path) %>
-	  </li>
-		<% if can? :manage, User %>
-			<li>
-				<%= link_to "Manage Users", users_path %>
-			</li>
-		<% end %>
-	  <li>
-	  <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>        
-	  </li>
-	<% else %>
-	  <li>
-	  <%= link_to('Login', new_user_session_path)  %>  
-	  </li>
-	<% end %>
-	<% flash.each do |key, message| %>
-	    <%= content_tag(:div, message, :class => "flash #{key}") %>
-	<% end %>
+	<!--[if lt IE 9]>
+  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->    
+  <%= stylesheet_link_tag 'blueprint/screen', :media => 'screen' %>
+  <%= stylesheet_link_tag 'blueprint/print',  :media => 'print' %>
+  <!--[if lt IE 8]><%= stylesheet_link_tag 'blueprint/ie' %><![endif]-->
+  <%= stylesheet_link_tag 'custom', :media => 'screen' %>
 </head>
 <body>
-
-<%= yield %>
-
+<div class="container">
+	<header>
+		<nav class="round">
+			<ul>
+				<% if user_signed_in? %>
+					<li>
+						<%= link_to "Projects", projects_path %>
+					</li>
+					<li>
+					  <%= link_to('My Account', edit_user_registration_path) %>
+				  </li>
+					<% if can? :manage, @users %>
+						<li>
+							<%= link_to "Manage Users", dashboard_index_path %>
+						</li>
+					<% end %>
+				  <li>
+				  <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>        
+				  </li>
+				<% end %>
+			</ul>
+		</nav>
+			<%= image_tag("logo.png", :alt => "taskoid", :class => "round")%>
+	</header>
+	<section class="round">
+		<%= yield %>
+	</section>
+</div>
 </body>
 </html>

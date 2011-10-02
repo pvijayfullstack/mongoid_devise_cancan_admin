@@ -9,7 +9,11 @@ class Ability
     
     if user.role == "User"
       can :update, User
-      can [:create, :update, :read], Project
+      can :create, Project
+      can :index, Project
+      can [:update, :read], Project do |project|
+        project.user_id == user.id
+      end
     end
     
   end
